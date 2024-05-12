@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 ##################################################
-# autor  : ghostkill73; <github.com/ghostkill73>
+# autor  : ghostkill  <github.com/ghostkill73>
 # versão : 0.1
 ##################################################
 # Desc   :
-# ./passwdgen.sh -{nmMe} -Tamanho
+# ./passwdgen -{nmMe} -Tamanho
 # n - incluir números (0-9);
 # m - incluir minúsculas (a-z);
 # M - incluir maiúsculas (A-Z);
@@ -13,9 +13,8 @@
 # config
 
 LC_ALL=C; LANG=C # desativa unicodes no input para mais performace
-limite="10" # quantia de linhas ao capturar em /dev/urandom
+limite="10" # quantia de linhas para capturar em /dev/urandom
 regex=''
-
 
 ##################################################
 # func
@@ -27,10 +26,8 @@ gen() {
 [[ "$1" =~ 'e' ]] && regex+='%!?@#$%&\*=\~\-\_.,+()<>{}[]|\"\'\`\^\:\;''
 
 _passwd="$(cat /dev/urandom | head -n "$limite" | tr -dc "$regex")"
-#	echo -e "$_passwd" | head -c "$2"; echo
 echo -e "${_passwd:0:"$2"}"
 }
-
 
 ##################################################
 # script
